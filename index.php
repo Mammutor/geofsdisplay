@@ -45,11 +45,11 @@
     <div id="footer">
       <div id="praesiGeoloek" class="praesidienst">
         <h3 ondblclick='EASTERzwiebelandGEEK()'>Pr&auml;senzdienste GeoL&ouml;k:</h3>
-        <?php include("php/praesidienste-geoloek.php"); ?>
+        <?php //include("php/praesidienste-geoloek.php"); ?>
       </div>
       <div id="praesiGeofs" class="praesidienst">
         <h3 ondblclick='EASTERbaconandEGGs()'>Pr&auml;senzdienste GI:</h3>
-        <?php include("php/praesidienste-geofs.php"); ?>
+        <?php //include("php/praesidienste-geofs.php"); ?>
       </div>
     </div>
   
