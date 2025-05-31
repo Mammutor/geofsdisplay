@@ -1,0 +1,1 @@
+*/5 * * * * root /usr/local/bin/autoresize.sh >> /var/log/autoresize.log 2>&1
