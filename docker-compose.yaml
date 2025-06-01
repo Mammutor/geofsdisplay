@@ -6,7 +6,5 @@ services:
             - "8080:80"
         volumes:
             - ./displaycontent:/var/www/html/displaycontent
-            - ./autoresize.sh:/usr/local/bin/autoresize.sh:ro
-            - ./crontab.txt:/etc/cron.d/geofsdisplay-cron:ro
             - ./geofsdisplay_logs:/var/log
         restart: unless-stopped
