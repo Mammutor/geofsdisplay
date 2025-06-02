@@ -3,7 +3,7 @@ services:
         image: nginx:latest
         container_name: nginx
         ports:
-            - 80:80
+          - 81:80
         volumes:
             - .:/var/www/html
             - ./default.conf:/etc/nginx/conf.d/default.conf
@@ -13,4 +13,4 @@ services:
         volumes:
             - .:/var/www/html
         environment:
-            - GEOFS_BASE_PAGE=https://giv-geofs.uni-muenster.de
+            - GEOFS_BASE_PAGE=https://giv-geofs.uni-muenster.de/
