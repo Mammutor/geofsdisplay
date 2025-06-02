@@ -49,7 +49,7 @@
       </div>
       <div id="praesiGeofs" class="praesidienst">
         <h3 ondblclick='EASTERbaconandEGGs()'>Pr&auml;senzdienste GI:</h3>
-        <?php //include("php/praesidienste-geofs.php"); ?>
+        <?php include("php/praesidienste-geofs.php"); ?>
       </div>
     </div>
   

@@ -1,4 +1,6 @@
-<?php $url =  "https://geofs.uni-muenster.de/wp/geoloek/praesenzzeiten"; 
+<?php
+$url =  getenv("GEOFS_BASE_PAGE") ?? "https://geofs.uni-muenster.de/"; 
+$url .=  "wp/geoloek/praesenzzeiten"; 
 $input = @file_get_contents($url) or die('Could not access file: $url'); 
 
 // remove any attributes from tags, to ensure there is no unwanted styling

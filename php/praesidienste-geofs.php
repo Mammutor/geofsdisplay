@@ -1,4 +1,5 @@
-<?php $url =  "https://geofs.uni-muenster.de/"; 
+<?php
+$url =  getenv("GEOFS_BASE_PAGE") ?? "https://geofs.uni-muenster.de/"; 
 
 $input = @file_get_contents($url) or die('Could not access file: $url'); 
 

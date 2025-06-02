@@ -12,3 +12,5 @@ services:
         image: php:7.3-fpm
         volumes:
             - .:/var/www/html
+        environment:
+            - GEOFS_BASE_PAGE=https://giv-geofs.uni-muenster.de
