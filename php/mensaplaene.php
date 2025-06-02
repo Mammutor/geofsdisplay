@@ -30,7 +30,7 @@ else
   function format_price($meal) { return $meal->price ? '(' . str_replace('.', ',', $meal->price) . '&nbsp;€)' : ''; }
 
   // Go through all of today's proper meals (named "Speisenangebot", "Heute am Aktionsstand (WOK)", "Imbiss X", where X=1,2,3...)
-  foreach(['Speisenangebot'=>'Oben', 'Heute'=>'Unten', 'Imbiss'=>'Imbiss', 'Eintopf'=>'Eintopf', 'Wurstbeilage'=>'Wurstbeilage'] as $catname_in_xml => $catname_to_display) {
+  foreach(['Speisenangebot'=>'Speisenangebot', 'Grill'=>'Wurstbeilage'] as $catname_in_xml => $catname_to_display) {
     $mensaplan .= "<h4>$catname_to_display</h4><ul>";
     $results = $mensa->xpath($base4today . '/om:category[starts-with(@name, "' . $catname_in_xml . '")]');
     if ($results) { // Füge eine Prüfung hinzu, falls xpath() nichts findet
@@ -80,7 +80,7 @@ else
   $mensaplan .= '</ul>';
 
   // Catch-all for the rest (categories that haven't been queried explicitly beforehand)
-  $catnames_so_far = ['Speisenangebot', 'Heute', 'Imbiss', 'Eintopf', 'Wurstbeilage', 'Beilage', 'Dessert'];
+  $catnames_so_far = ['Speisenangebot', 'Wurstbeilage', 'Beilage', 'Dessert'];
   // Build selectors as before
   $catnames_so_far = array_map(function ($v) { return "starts-with(@name, '$v')"; }, $catnames_so_far);
   // Use the "not(...)" function to select all nodes which are the opposite of what was selected so far
@@ -91,25 +91,6 @@ else
   // var_dump("Ergebnis von xpath() für Catch-all:"); // Debugging-Ausgabe
   // var_dump($results_catchall); // Debugging-Ausgabe
 
-  if ($results_catchall) { // Füge eine Prüfung hinzu, falls xpath() nichts findet
-    // Go through everything we found
-    foreach($results_catchall as $mealcat) {
-      if ($mealcat) { // Füge eine Prüfung hinzu, falls die Kategorie leer ist
-        foreach($mealcat as $meal) {
-          // If it has a price, it's probably just another meal with a so far unknown category
-          // Sicherstellen, dass price existiert, bevor darauf zugegriffen wird
-          if(isset($meal->price) && (string) $meal->price !== '') {
-            // Treat it like the other meals
-            $mensaplan .= "<h4>Sonstiges</h4><ul><li>" . format_name($meal) . " " . format_price($meal) . "</li></ul>";
-            // Otherwise it's probably just an info like "we will have reduced opening hours soon"
-          } else {
-            // Very plain output
-            $mensaplan .= "<h4>Info</h4><p>$meal->name</p>";
-          }
-        }
-      }
-    }
-  }
 }
 
 echo $mensaplan;
