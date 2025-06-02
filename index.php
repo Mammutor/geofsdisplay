@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>geofsdisplay</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="apple-touch-icon" href="images/displaylogo.png" />
   <!--<link rel="apple-touch-startup-image" href="images/startupscreen.png" />-->
-  <meta name="apple-mobile-web-app-capable" content="yes" />  
+  <meta name="mobile-web-app-capable" content="yes" />  
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
   <script src="./js/hammerjs-v2.0.6.min.js"></script>
   <script src="./js/index.js"></script>
@@ -45,7 +45,7 @@
     <div id="footer">
       <div id="praesiGeoloek" class="praesidienst">
         <h3 ondblclick='EASTERzwiebelandGEEK()'>Pr&auml;senzdienste GeoL&ouml;k:</h3>
-        <?php //include("php/praesidienste-geoloek.php"); ?>
+        <?php include("php/praesidienste-geoloek.php"); ?>
       </div>
       <div id="praesiGeofs" class="praesidienst">
         <h3 ondblclick='EASTERbaconandEGGs()'>Pr&auml;senzdienste GI:</h3>
