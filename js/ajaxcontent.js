@@ -30,9 +30,8 @@ function refreshWetter() {
   window.setTimeout(refreshWetter, 5*60*1000);
 }
 
-function refreshRegenradarGif() {
-  // the script ignores the parameter, it's just there to force the browser to reload the file (bypassing all caches)
-  document.getElementById('regenradar').innerHTML = '<img src="php/regenradargif.php?t=' + (new Date().getTime()) + '">';
-  // refresh every 5 minutes
-  window.setTimeout(refreshRegenradarGif, 5*60*1000);
+function refreshRegenradar() {
+  document.getElementById("regenradar").innerHTML =
+      `<iframe sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" src="https://widgets.meteox.com/de-DE/widgets/radar/location/20693/rain?z=11" style="width:100%!important;max-width:500px!important;max-height:500px!important;height:100%!important;border:none!important;box-sizing:border-box!important;" scrolling="no" frameborder="0"></iframe>`;
+  window.setTimeout(refreshRegenradar, 5 * 60 * 1000);
 }

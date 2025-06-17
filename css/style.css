@@ -253,9 +253,10 @@ p {
 /* REGENRADAR */
 #regenradar {
 	margin-right:20px;
+	height:375px;
 }
 
-#regenradar img {
+#regenradar iframe {
 	width:100%;
 }
 

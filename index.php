@@ -31,8 +31,8 @@
       <div id="news">
         <div class="latestNews">
           <h3 class="newstitle">Regenradar</h3>
-          <p class="newstext" id="regenradar"></p>
-          <p class="newstext" id="wetter"></p>
+            <p class="newstext" id="regenradar"></p>
+            <p class="newstext" id="wetter"></p>
         </div>
         <div class="latestNews">
           <h3 class="newstitle">Heute in der Mensa am <span ondblclick="hockenpong()">Ring</span>:</h3>
