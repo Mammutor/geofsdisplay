@@ -1,5 +1,5 @@
 <?php
-  $url = "https://www.uni-muenster.de/BAI/weather/";
+  $url = "https://www.uni-muenster.de/BAI/data/weather2.txt";
    
   if (! $input = @file_get_contents($url))
   {
@@ -7,20 +7,19 @@
   }
   else
   { 
-    preg_match('~<table class="weather">.*?Messzeit.*?(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}).*?Lufttemperatur.*?class="data tab4".*?(-?\d+\.?\d*).*?Relative Luftfeuchte.*?class="data tab3".*?(\d+).*?Luftdruck.*?class="data tab4".*?(\d+\.?\d*).*?Windgeschwindigkeit.*?class="data tab3".*?m/s.*?(\d+\.?\d*).*?km/h.*?Windrichtung.*?aus (\w+).*?</table>~si', $input, $wetterdaten);
+    // Reg-Ex für Wetterdaten
+    preg_match('~<table class="news_weather".*?<th>Lokalzeit</th>.*?<td>(\d{2}:\d{2})</td>.*?<th>Temperatur</th>.*?<td>(-?\d+\.?\d*).*?<th>Luftfeuchte</th>.*?<td>(\d+).*?<th>Windst&auml;rke</th>.*?<br />(\d+\.?\d*).*?km.*?<th>Windrichtung</th>.*?aus (\w+).*?<th>Luftdruck</th>.*?<td>(\d+\.?\d*).*?</table>~si', $input, $wetterdaten);
     
     // Prüfe ob der Regex erfolgreich war
     if (count($wetterdaten) >= 7) {
-      // Extrahiere nur die Uhrzeit aus dem Datum
-      $datum_zeit = $wetterdaten[1];
-      preg_match('/(\d{2}:\d{2})/', $datum_zeit, $zeit_match);
-      $uhrzeit = isset($zeit_match[1]) ? $zeit_match[1] : "--:--";
+      // Lokalzeit ist bereits im Format HH:MM
+      $uhrzeit = $wetterdaten[1];
       
       $temperatur   = $wetterdaten[2];
       $luftfeuchte  = $wetterdaten[3];
-      $luftdruck    = $wetterdaten[4];
-      $windgeschwindigkeit = $wetterdaten[5];
-      $windrichtung = $wetterdaten[6];
+      $windgeschwindigkeit = $wetterdaten[4];
+      $windrichtung = $wetterdaten[5];
+      $luftdruck    = $wetterdaten[6];
     } else {
       // Fallback-Werte wenn Regex fehlschlägt
       $uhrzeit      = "--:--";
