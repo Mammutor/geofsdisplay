@@ -62,9 +62,7 @@
 </div>  <!-- #container -->
     
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', () => {
-        init();
-    });
+  document.addEventListener("DOMContentLoaded", () => init())
 </script>
 </body>
 </html>
