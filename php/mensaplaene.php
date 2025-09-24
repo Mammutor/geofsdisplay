@@ -81,16 +81,9 @@ else
 
   // Catch-all for the rest (categories that haven't been queried explicitly beforehand)
   $catnames_so_far = ['Speisenangebot', 'Wurstbeilage', 'Beilage', 'Dessert'];
-  // Build selectors as before
   $catnames_so_far = array_map(function ($v) { return "starts-with(@name, '$v')"; }, $catnames_so_far);
-  // Use the "not(...)" function to select all nodes which are the opposite of what was selected so far
   $xpath_expression_catchall = $base4today . '/om:category[not(' . implode(" or ", $catnames_so_far) . ')]';
-  // var_dump("Erzeugter XPath-Ausdruck für Catch-all:"); // Debugging-Ausgabe
-  // var_dump($xpath_expression_catchall); // Debugging-Ausgabe
   $results_catchall = $mensa->xpath($xpath_expression_catchall);
-  // var_dump("Ergebnis von xpath() für Catch-all:"); // Debugging-Ausgabe
-  // var_dump($results_catchall); // Debugging-Ausgabe
-
 }
 
 echo $mensaplan;
