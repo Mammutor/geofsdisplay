@@ -42,5 +42,5 @@ function init() {
   reloadDisplayContent();
   refreshFahrplan();
   refreshWetter();
-  refreshRegenradar();
+  refreshRegenradarGif();
 }
