@@ -26,10 +26,10 @@
     //   -> that's it!
     // note that "ZL" stands for "zoom level" and that (66,42) and (132,84) correspond to Münster's tile numbers (when rounded) in the
     // "slippy tile names" scheme (https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames) in zoom level 7 and 8 respectively.
-    $tiles = 'topo|1;;0;0|wetterradar/prozess/tiles/geolayer/rasterimages/rr_topography/v1/ZL8/512/132_84.jpg$r|2;;0;0;false' .
-             '|' . $step->layers->europe->rain->ptypPath . $step->layers->europe->rain->path . '/' . implode('/', $step->layers->europe->rain->timePath) . '/ZL7/522/sprite/66_42.png' .
-             ';' . $step->layers->global->rain->ptypPath . $step->layers->global->rain->path . '/' . implode('/', $step->layers->global->rain->timePath) . '/ZL7/522/border/66_42.png$i' .
-             '|1;;0;0|geo/prozess/karten/produktkarten/wetterradar/generate/rasterTiles/rr_geooverlay/v2/ZL8/512/132_84.png';
+    $tiles = 'seamask|1;;0;0|geo/prozess/karten/produktkarten/wetterradar/generate/topoTiles/bw_landseamask/v2/ZL8/512/132_84.png$' .
+             'topo|1;;0;0|geo/prozess/karten/produktkarten/wetterradar/generate/topoTiles/rr_topography/v3/ZL8/512/132_84.jpg$' .
+             'r|2;;0;0;false|' . $step->layers->europe->rain->ptypPath . $step->layers->europe->rain->path . '/' . implode('/', $step->layers->europe->rain->timePath) . '/ZL7/522/sprite/66_42.png;' .
+             $step->layers->global->rain->ptypPath . $step->layers->global->rain->path . '/' . implode('/', $step->layers->global->rain->timePath) . '/ZL7/522/border/66_42.png';
     // build URL (parameters `k` and `time` left out as they don't seem to be necessary, "rr" probably stands for "rain radar")
     $url = 'https://tiles.wo-cloud.com/composite?format=png&lg=rr&tiles=' . urlencode(base64_encode($tiles));
 
