@@ -11,7 +11,7 @@
   $context = stream_context_create($options);
   
   // get current data from wetteronline.de API endpoint
-  $data = json_decode(file_get_contents('https://tiles.wo-cloud.com/metadata?lg=wr&period=periodCurrentLowRes', false, $context));
+  $data = json_decode(file_get_contents('https://tiles.wo-cloud.com/metadata?lg=wr&period=periodCurrentLowRes&type=period', false, $context));
   
   $frames=[];
   $dauer=[];
