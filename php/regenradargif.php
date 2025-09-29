@@ -13,6 +13,18 @@
   // get current data from wetteronline.de API endpoint
   $data = json_decode(file_get_contents('https://tiles.wo-cloud.com/metadata?lg=wr&period=periodCurrentLowRes&type=period', false, $context));
   
+  // load marker icon for Münster once
+  $markerImage = null;
+  $markerData = @file_get_contents('https://radar.wo-cloud.com/desktop/assets/shared/position-marker/positionMarker_mDPI.png', false, $context);
+  if ($markerData !== false)
+  {
+    $markerImage = imagecreatefromstring($markerData);
+    if ($markerImage !== false)
+    {
+      imagesavealpha($markerImage, true);
+    }
+  }
+  
   $frames=[];
   $dauer=[];
 
@@ -41,6 +53,17 @@
     // Crop away Düsseldorf and Köln at the bottom so that Münster is vertically centered
     $cropped = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => 512, 'height' => 365]);
     
+    $markerX = 320;
+    $markerY = 150;
+    $markerTextY = 140;
+    $markerTextX = $markerX;
+    if ($markerImage !== null)
+    {
+      imagecopy($cropped, $markerImage, $markerX, $markerY, 0, 0, imagesx($markerImage), imagesy($markerImage));
+      $markerTextY = $markerY + imagesy($markerImage) + 5;
+      $markerTextX = $markerX + (imagesx($markerImage) / 2) - ((imagefontwidth(5) * strlen('Muenster')) / 2);
+    }
+    
     // Add the frame's timestamp as text below the "Münster" label
     // 1. Extract the timestamp
     $timezoneoffset = $data->liveid[14];   // `liveid` has format "20210714-1640-2" -- I *assume* the last bit is the timezone
@@ -48,6 +71,7 @@
     $time = ($hour < 10 ? '0' : '') . $hour . ':' . $step->layers->europe->rain->timePath[4];   // leading zero, hour, colon, minute
     // 2. Choose a text color
     $textcolor = imagecolorallocate($cropped, 0, 0, 0);   // nice and simple black
+    imagestring($cropped, 5, (int)$markerTextX, (int)$markerTextY, 'Muenster', $textcolor);
     // 3. Write onto the image (5 uses the biggest font size, (342,178) puts it under the "Münster" label, use (450,345) for bottom right corner)
     imagestring($cropped, 5, 342, 178, $time, $textcolor);
     
